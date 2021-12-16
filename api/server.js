@@ -20,7 +20,11 @@ server.get('/api/users', (req, res) => {
 });
 
 server.get('/api/users/:id', async (req, res) => {
-  res.json(await Users.getById(req.params.id));
+  res.status(200).json(await Users.getById(req.params.id));
+});
+
+server.post('/api/users', async (req, res) => {
+  res.status(201).json(await Users.insert(req.body));
 });
 
 module.exports = server;

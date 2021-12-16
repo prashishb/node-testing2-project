@@ -43,3 +43,18 @@ describe('[GET] /api/users/:id', () => {
     expect(res.body).toHaveProperty('id', 1);
   });
 });
+
+describe('[POST] /api/users', () => {
+  let res;
+  beforeAll(async () => {
+    res = await request(server).post('/api/users').send({
+      username: 'newUser',
+    });
+  });
+  it('responds with 201 CREATED', async () => {
+    expect(res.status).toBe(201);
+  });
+  it('responds with the new user', async () => {
+    expect(res.body).toMatchObject({ id: 7, username: 'newUser' });
+  });
+});
