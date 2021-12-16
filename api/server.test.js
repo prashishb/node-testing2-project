@@ -19,12 +19,27 @@ it('is the correct env', () => {
   expect(process.env.NODE_ENV).toBe('testing');
 });
 describe('[GET] /api/users', () => {
+  let res;
+  beforeAll(async () => {
+    res = await request(server).get('/api/users');
+  });
   it('responds with 200 OK', async () => {
-    const res = await request(server).get('/api/users');
     expect(res.status).toBe(200);
   });
   it('responds with all users', async () => {
-    const res = await request(server).get('/api/users');
     expect(res.body).toHaveLength(6);
+  });
+});
+
+describe('[GET] /api/users/:id', () => {
+  let res;
+  beforeAll(async () => {
+    res = await request(server).get('/api/users/1');
+  });
+  it('responds with 200 OK', async () => {
+    expect(res.status).toBe(200);
+  });
+  it('responds with a single user', async () => {
+    expect(res.body).toHaveProperty('id', 1);
   });
 });

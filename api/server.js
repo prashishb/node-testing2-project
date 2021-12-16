@@ -19,4 +19,8 @@ server.get('/api/users', (req, res) => {
     });
 });
 
+server.get('/api/users/:id', async (req, res) => {
+  res.json(await Users.getById(req.params.id));
+});
+
 module.exports = server;
