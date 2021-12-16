@@ -9,7 +9,7 @@
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",
     "resetdb": "npm run rollback && npm run migrate && npm run seed",
-    "test": "cross-env NODE_ENV=testing jest --watch --runInBand"
+    "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.3",
     "cross-env": "^7.0.3",
     "eslint": "^8.4.1",
     "jest": "^27.4.5",
