@@ -17,11 +17,11 @@ async function insert(user) {
 }
 
 async function update(id, changes) {
-  return null;
+  return db('users').where({ id }).update(changes);
 }
 
 function remove(id) {
-  return null;
+  return db('users').where({ id }).del();
 }
 
 module.exports = {
