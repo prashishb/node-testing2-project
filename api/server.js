@@ -6,7 +6,7 @@ const server = express();
 server.use(express.json());
 
 server.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to the API' });
+  res.send('Welcome to the API!');
 });
 
 server.get('/api/users', (req, res) => {
@@ -25,6 +25,10 @@ server.get('/api/users/:id', async (req, res) => {
 
 server.post('/api/users', async (req, res) => {
   res.status(201).json(await Users.insert(req.body));
+});
+
+server.delete('/api/users/:id', async (req, res) => {
+  res.status(200).json(await Users.remove(req.params.id));
 });
 
 module.exports = server;

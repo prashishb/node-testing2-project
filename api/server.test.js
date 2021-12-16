@@ -57,4 +57,22 @@ describe('[POST] /api/users', () => {
   it('responds with the new user', async () => {
     expect(res.body).toMatchObject({ id: 7, username: 'newUser' });
   });
+  it('responds with the new (snapshot)', () => {
+    expect(res.body).toMatchSnapshot();
+  });
+});
+
+describe('[DELETE] /api/users/:id', () => {
+  let res;
+  let user;
+  beforeAll(async () => {
+    res = await request(server).delete('/api/users/1');
+    user = await db('users').where({ id: 1 }).first();
+  });
+  it('responds with 200 OK', async () => {
+    expect(res.status).toBe(200);
+  });
+  it('can delete the correct user', async () => {
+    expect(user).not.toBeDefined();
+  });
 });
