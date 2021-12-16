@@ -9,7 +9,11 @@ function getById(id) {
 }
 
 async function insert(user) {
-  return null;
+  return db('users')
+    .insert(user)
+    .then(([id]) => {
+      return getById(id);
+    });
 }
 
 async function update(id, changes) {

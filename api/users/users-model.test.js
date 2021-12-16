@@ -32,4 +32,15 @@ describe('[1] users model', () => {
       expect(user).toMatchObject({ id: 1, username: 'admin' });
     });
   });
+  describe('insert', () => {
+    it('creates a new user in db', async () => {
+      await Users.insert({ username: 'SecretAgent' });
+      const newUser = await db('users').where('id', 7).first();
+      expect(newUser).toMatchObject({ id: 7, username: 'SecretAgent' });
+    });
+    it('resolves the new user with id, username', async () => {
+      const user = await Users.insert({ username: 'SecretAgent' });
+      expect(user).toMatchObject({ id: 7, username: 'SecretAgent' });
+    });
+  });
 });
