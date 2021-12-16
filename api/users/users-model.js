@@ -5,7 +5,7 @@ function getAll() {
 }
 
 function getById(id) {
-  return null;
+  return db('users').where({ id }).first();
 }
 
 async function insert(user) {

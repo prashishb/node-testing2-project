@@ -26,4 +26,10 @@ describe('[1] users model', () => {
       expect(users).toHaveLength(6);
     });
   });
+  describe('getById', () => {
+    it('resolves a user with given id, username', async () => {
+      const user = await Users.getById(1);
+      expect(user).toMatchObject({ id: 1, username: 'admin' });
+    });
+  });
 });
